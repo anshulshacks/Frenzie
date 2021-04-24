@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "428169492731",
+    "project_id": "frienzie-18d2d",
+    "storage_bucket": "frienzie-18d2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428169492731:android:ad2e4e0349be8c04ce585e",
+        "android_client_info": {
+          "package_name": "com.example.frenzie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428169492731-n91mhdhgo0cegqman31o7sranhp57i84.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6jXeQFvUHJz6Saaebcfd7JA9q4CuQcw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428169492731-n91mhdhgo0cegqman31o7sranhp57i84.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
