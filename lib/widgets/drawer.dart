@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:frenzie/screens/chat_room_screen.dart';
 import 'package:frenzie/screens/profile_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:frenzie/screens/signup_screen.dart';
 
 class DrawerSection extends StatelessWidget {
   @override
@@ -113,48 +115,64 @@ class DrawerSection extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          ListTile(
-            leading: Icon(
-              Icons.sms,
-              color: Theme.of(context).primaryColor,
-            ),
-            title: Text(
-              'chat',
-              style: TextStyle(
-                fontFamily: 'Mogra',
-                fontSize: 30,
-                color: Theme.of(context).accentColor,
-                shadows: [
-                  Shadow(
-                    offset: Offset(1.0, 1.0),
-                    blurRadius: 3.0,
-                    color: Color.fromRGBO(255, 222, 49, 1),
-                  ),
-                ],
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChatRoom()),
+              );
+            },
+            child: ListTile(
+              leading: Icon(
+                Icons.sms,
+                color: Theme.of(context).primaryColor,
+              ),
+              title: Text(
+                'chat',
+                style: TextStyle(
+                  fontFamily: 'Mogra',
+                  fontSize: 30,
+                  color: Theme.of(context).accentColor,
+                  shadows: [
+                    Shadow(
+                      offset: Offset(1.0, 1.0),
+                      blurRadius: 3.0,
+                      color: Color.fromRGBO(255, 222, 49, 1),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
           SizedBox(
             height: 200,
           ),
-          ListTile(
-            leading: Icon(
-              Icons.logout,
-              color: Theme.of(context).primaryColor,
-            ),
-            title: Text(
-              'logout',
-              style: TextStyle(
-                fontFamily: 'Mogra',
-                fontSize: 30,
-                color: Theme.of(context).accentColor,
-                shadows: [
-                  Shadow(
-                    offset: Offset(1.0, 1.0),
-                    blurRadius: 3.0,
-                    color: Color.fromRGBO(255, 222, 49, 1),
-                  ),
-                ],
+          InkWell(
+            onTap: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.of(context).pushNamed(
+                SignupScreen.routeName,
+              );
+            },
+            child: ListTile(
+              leading: Icon(
+                Icons.logout,
+                color: Theme.of(context).primaryColor,
+              ),
+              title: Text(
+                'logout',
+                style: TextStyle(
+                  fontFamily: 'Mogra',
+                  fontSize: 30,
+                  color: Theme.of(context).accentColor,
+                  shadows: [
+                    Shadow(
+                      offset: Offset(1.0, 1.0),
+                      blurRadius: 3.0,
+                      color: Color.fromRGBO(255, 222, 49, 1),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

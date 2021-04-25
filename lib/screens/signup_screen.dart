@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:frenzie/screens/friends_screen.dart';
+import 'package:frenzie/screens/login.dart';
 import 'package:frenzie/widgets/drawer.dart';
 import 'package:frenzie/widgets/profile_picker.dart';
 import 'package:frenzie/widgets/square_img_picker.dart';
@@ -79,6 +80,17 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ],
                   ),
+                ),
+              ),
+              Container(
+                child: FlatButton(
+                  child: Text('Or login'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Login()),
+                    );
+                  },
                 ),
               ),
               Container(
@@ -363,8 +375,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
               ),
-              
-
               SizedBox(height: 30),
               Container(
                 padding: EdgeInsets.only(
@@ -422,7 +432,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
               ),
-
               SizedBox(height: 30),
               Container(
                 padding: EdgeInsets.only(
@@ -480,8 +489,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
               ),
-
-
               SizedBox(height: 30),
               Container(
                 padding: EdgeInsets.only(
@@ -539,8 +546,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
               ),
-
-
               ProfilePicker(_pickingImage),
               SquareImgPicker(_pickingSquareImg),
               RaisedButton(
@@ -573,7 +578,10 @@ class _SignupScreenState extends State<SignupScreen> {
                     await ref.putFile(_userProfilePicture).onComplete;
                     final url = await ref.getDownloadURL();
 
-                    final squareRef = FirebaseStorage.instance.ref().child('other').child(currentUUID + '.jpg');
+                    final squareRef = FirebaseStorage.instance
+                        .ref()
+                        .child('other')
+                        .child(currentUUID + '.jpg');
                     await squareRef.putFile(_squareImgFile).onComplete;
                     final squareUrl = await squareRef.getDownloadURL();
 
