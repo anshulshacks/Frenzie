@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:frenzie/screens/signup_screen.dart';
+import 'package:frenzie/widgets/drawer.dart';
 import 'package:frenzie/widgets/friend_tile.dart';
 
 class Friends extends StatelessWidget {
@@ -10,6 +11,7 @@ class Friends extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerSection(),
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,

@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:frenzie/screens/friends_screen.dart';
+import 'package:frenzie/widgets/drawer.dart';
 import 'package:frenzie/widgets/profile_picker.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -15,7 +16,6 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  
   File _userProfilePicture;
   void _pickingImage(File image) {
     _userProfilePicture = image;
@@ -42,7 +42,9 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Builder(
+    return Scaffold(
+      drawer: DrawerSection(),
+      body: Builder(
       builder: (BuildContext context1) {
         return Column(
           children: [
@@ -234,7 +236,6 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
             ),
             ProfilePicker(_pickingImage),
-            
             RaisedButton(
               color: Theme.of(context).accentColor,
               child: Text(
