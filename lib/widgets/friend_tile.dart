@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class FriendTile extends StatelessWidget {
+  final String name;
+
+  FriendTile(this.name);
+
   @override
   Widget build(BuildContext context) {
     return ListTile(

@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfilePicker extends StatefulWidget {
-  @override
+  final void Function(File pickedImageParam) forwardImage;
+
+  ProfilePicker(this.forwardImage);
+  
+  @override  
   _ProfilePickerState createState() => _ProfilePickerState();
 }
 
@@ -17,6 +21,7 @@ class _ProfilePickerState extends State<ProfilePicker> {
     setState(() {
       _pickedProfilePicture = pickedImageFile;
     });
+    widget.forwardImage(pickedImageFile);
   }
 
   @override

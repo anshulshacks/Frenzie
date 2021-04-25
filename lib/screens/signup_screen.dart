@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:frenzie/screens/friends_screen.dart';
@@ -11,6 +14,11 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  File _userProfilePicture;
+  void _pickingImage(File image) {
+    _userProfilePicture = image;
+  }
+
   String interest_1 = 'Art';
   String interest_2 = 'Art';
   String interest_3 = 'Art';
@@ -53,6 +61,60 @@ class _SignupScreenState extends State<SignupScreen> {
                       color: Color.fromRGBO(255, 222, 49, 1),
                     ),
                   ],
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(
+                left: 30,
+              ),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Name',
+                style: TextStyle(
+                  fontFamily: 'Mogra',
+                  color: Theme.of(context).accentColor,
+                  fontSize: 18,
+                  shadows: [
+                    Shadow(
+                      offset: Offset(1.0, 1.0),
+                      blurRadius: 3.0,
+                      color: Color.fromRGBO(255, 222, 49, 1),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                vertical: 15,
+                horizontal: 30,
+              ),
+              child: TextField(
+                controller: emailController,
+                style: TextStyle(
+                  color: Theme.of(context).accentColor,
+                ),
+                decoration: InputDecoration(
+                  labelText: 'Full Name',
+                  labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+                  prefixIcon: Icon(
+                    Icons.mail,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                      width: 3,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).accentColor,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -167,45 +229,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
             ),
-            ProfilePicker(),
-            // Row(
-            //   children: [
-            //     DropdownButton<String>(
-            //       value: interest_1,
-            //       icon: const Icon(Icons.arrow_downward),
-            //       iconSize: 24,
-            //       elevation: 16,
-
-            //       items: interests.map<DropdownMenuItem<String>>((String value) {
-            //         return DropdownMenuItem<String>(
-            //           value: value,
-            //           child: Text(value),
-            //         );
-            //       }).toList(),
-            //       onChanged: null,
-            //     ),
-            //     DropdownButton(
-            //       value: interest_2,
-            //       items: interests.map<DropdownMenuItem<String>>((String value) {
-            //         return DropdownMenuItem<String>(
-            //           value: value,
-            //           child: Text(value),
-            //         );
-            //       }).toList(),
-            //       onChanged: null,
-            //     ),
-            //     DropdownButton(
-            //       value: interest_3,
-            //       items: interests.map<DropdownMenuItem<String>>((String value) {
-            //         return DropdownMenuItem<String>(
-            //           value: value,
-            //           child: Text(value),
-            //         );
-            //       }).toList(),
-            //       onChanged: null,
-            //     ),
-            //   ],
-            // ),
+            ProfilePicker(_pickingImage),
+            
             RaisedButton(
               color: Theme.of(context).accentColor,
               child: Text(
@@ -229,7 +254,11 @@ class _SignupScreenState extends State<SignupScreen> {
                   currentUUID = user.uid;
                   print(currentUUID);
                   print(currentUUID);
-
+                  final ref = FirebaseStorage.instance
+                      .ref()
+                      .child('pfp')
+                      .child(currentUUID + '.jpg');
+                  await ref.putFile(_userProfilePicture).onComplete;
                   Firestore.instance.collection('profile').add({
                     'uuid': currentUUID,
                     'first_name': null,

@@ -4,6 +4,7 @@ import 'package:frenzie/widgets/friend_tile.dart';
 
 class Friends extends StatelessWidget {
   static const routeName = '/friends';
+  var chosenStream = Firestore.instance.collection('profile').snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,17 +45,30 @@ class Friends extends StatelessWidget {
               ),
             ],
           ),
-          FriendTile(),
+          Expanded(
+            child: StreamBuilder(
+                stream: chosenStream,
+                builder: (ctx, streamSnapshot) {
+                  if (streamSnapshot.connectionState ==
+                      ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  final documents = streamSnapshot.data.documents;
+                  return ListView.builder(
+                    itemCount: documents.length,
+                    itemBuilder: (ctx, index) => FriendTile(documents[index]['uuid'])
+                  );
+                }),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
           print('hi');
-          Firestore.instance
-          .collection('profile')
-          .snapshots()
-          .listen((data) {
+          Firestore.instance.collection('profile').snapshots().listen((data) {
             data.documents.forEach((document) {
               print(document['text']);
             });
