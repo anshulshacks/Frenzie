@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frenzie/screens/friends_screen.dart';
+import 'package:frenzie/screens/profile_screen.dart';
 import 'package:frenzie/screens/signup_screen.dart';
 
 void main() {
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       routes: {
         Friends.routeName: (ctx) => Friends(),
         SignupScreen.routeName: (ctx) => SignupScreen(),
+        // ProfileScreen.routeName: (ctx) => ProfileScreen(),
       },
     );
   }

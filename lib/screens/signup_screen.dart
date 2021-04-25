@@ -39,278 +39,561 @@ class _SignupScreenState extends State<SignupScreen> {
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
+  final ageController = TextEditingController();
+  final descriptionController = TextEditingController();
+  final interest1Controller = TextEditingController();
+  final interest2Controller = TextEditingController();
+  final interest3Controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: DrawerSection(),
-      body: Builder(
-      builder: (BuildContext context1) {
-        return Column(
-          children: [
-            SizedBox(
-              height: 50,
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: Text(
-                'Signup',
-                style: TextStyle(
-                  fontFamily: 'Mogra',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 36,
-                  color: Theme.of(context).accentColor,
-                  shadows: [
-                    Shadow(
-                      offset: Offset(1.0, 1.0),
-                      blurRadius: 3.0,
-                      color: Color.fromRGBO(255, 222, 49, 1),
-                    ),
-                  ],
-                ),
+      body: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 50,
               ),
-            ),
-            Container(
-              padding: EdgeInsets.only(
-                left: 30,
-              ),
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Name',
-                style: TextStyle(
-                  fontFamily: 'Mogra',
-                  color: Theme.of(context).accentColor,
-                  fontSize: 18,
-                  shadows: [
-                    Shadow(
-                      offset: Offset(1.0, 1.0),
-                      blurRadius: 3.0,
-                      color: Color.fromRGBO(255, 222, 49, 1),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(
-                vertical: 15,
-                horizontal: 30,
-              ),
-              child: TextField(
-                controller: nameController,
-                style: TextStyle(
-                  color: Theme.of(context).accentColor,
-                ),
-                decoration: InputDecoration(
-                  labelText: 'Full Name',
-                  labelStyle: TextStyle(color: Theme.of(context).primaryColor),
-                  prefixIcon: Icon(
-                    Icons.text_fields,
-                    color: Theme.of(context).primaryColor,
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  'Signup',
+                  style: TextStyle(
+                    fontFamily: 'Mogra',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 36,
+                    color: Theme.of(context).accentColor,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 3.0,
+                        color: Color.fromRGBO(255, 222, 49, 1),
+                      ),
+                    ],
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(
+                  left: 30,
+                ),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Name',
+                  style: TextStyle(
+                    fontFamily: 'Mogra',
+                    color: Theme.of(context).accentColor,
+                    fontSize: 18,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 3.0,
+                        color: Color.fromRGBO(255, 222, 49, 1),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 15,
+                  horizontal: 30,
+                ),
+                child: TextField(
+                  controller: nameController,
+                  style: TextStyle(
+                    color: Theme.of(context).accentColor,
+                  ),
+                  decoration: InputDecoration(
+                    labelText: 'Full Name',
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).primaryColor),
+                    prefixIcon: Icon(
+                      Icons.text_format,
                       color: Theme.of(context).primaryColor,
-                      width: 3,
                     ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                      color: Theme.of(context).accentColor,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                        width: 3,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).accentColor,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 30),
-            Container(
-              padding: EdgeInsets.only(
-                left: 30,
-              ),
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Email',
-                style: TextStyle(
-                  fontFamily: 'Mogra',
-                  color: Theme.of(context).accentColor,
-                  fontSize: 18,
-                  shadows: [
-                    Shadow(
-                      offset: Offset(1.0, 1.0),
-                      blurRadius: 3.0,
-                      color: Color.fromRGBO(255, 222, 49, 1),
-                    ),
-                  ],
+              SizedBox(height: 30),
+              Container(
+                padding: EdgeInsets.only(
+                  left: 30,
                 ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(
-                vertical: 15,
-                horizontal: 30,
-              ),
-              child: TextField(
-                controller: emailController,
-                style: TextStyle(
-                  color: Theme.of(context).accentColor,
-                ),
-                decoration: InputDecoration(
-                  labelText: 'Email',
-                  labelStyle: TextStyle(color: Theme.of(context).primaryColor),
-                  prefixIcon: Icon(
-                    Icons.mail,
-                    color: Theme.of(context).primaryColor,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Email',
+                  style: TextStyle(
+                    fontFamily: 'Mogra',
+                    color: Theme.of(context).accentColor,
+                    fontSize: 18,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 3.0,
+                        color: Color.fromRGBO(255, 222, 49, 1),
+                      ),
+                    ],
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 15,
+                  horizontal: 30,
+                ),
+                child: TextField(
+                  controller: emailController,
+                  style: TextStyle(
+                    color: Theme.of(context).accentColor,
+                  ),
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).primaryColor),
+                    prefixIcon: Icon(
+                      Icons.mail,
                       color: Theme.of(context).primaryColor,
-                      width: 3,
                     ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                      color: Theme.of(context).accentColor,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                        width: 3,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).accentColor,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 30),
-            Container(
-              padding: EdgeInsets.only(
-                left: 30,
-              ),
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Password',
-                style: TextStyle(
-                  fontFamily: 'Mogra',
-                  color: Theme.of(context).accentColor,
-                  fontSize: 18,
-                  shadows: [
-                    Shadow(
-                      offset: Offset(1.0, 1.0),
-                      blurRadius: 3.0,
-                      color: Color.fromRGBO(255, 222, 49, 1),
-                    ),
-                  ],
+              SizedBox(height: 30),
+              Container(
+                padding: EdgeInsets.only(
+                  left: 30,
                 ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(
-                vertical: 15,
-                horizontal: 30,
-              ),
-              child: TextField(
-                obscureText: true,
-                controller: passwordController,
-                style: TextStyle(
-                  color: Theme.of(context).accentColor,
-                ),
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  labelStyle: TextStyle(color: Theme.of(context).primaryColor),
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: Theme.of(context).primaryColor,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Password',
+                  style: TextStyle(
+                    fontFamily: 'Mogra',
+                    color: Theme.of(context).accentColor,
+                    fontSize: 18,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 3.0,
+                        color: Color.fromRGBO(255, 222, 49, 1),
+                      ),
+                    ],
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 15,
+                  horizontal: 30,
+                ),
+                child: TextField(
+                  obscureText: true,
+                  controller: passwordController,
+                  style: TextStyle(
+                    color: Theme.of(context).accentColor,
+                  ),
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).primaryColor),
+                    prefixIcon: Icon(
+                      Icons.lock,
                       color: Theme.of(context).primaryColor,
-                      width: 3,
                     ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                      color: Theme.of(context).accentColor,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                        width: 3,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).accentColor,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            ProfilePicker(_pickingImage),
-            RaisedButton(
-              color: Theme.of(context).accentColor,
-              child: Text(
-                'Sign up',
-                style: TextStyle(
-                  fontFamily: 'Mogra',
-                  color: Colors.white,
+              SizedBox(height: 30),
+              Container(
+                padding: EdgeInsets.only(
+                  left: 30,
+                ),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Age',
+                  style: TextStyle(
+                    fontFamily: 'Mogra',
+                    color: Theme.of(context).accentColor,
+                    fontSize: 18,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 3.0,
+                        color: Color.fromRGBO(255, 222, 49, 1),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              onPressed: () async {
-                FirebaseAuth auth = FirebaseAuth.instance;
-                AuthResult _authResult;
+              Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 15,
+                  horizontal: 30,
+                ),
+                child: TextField(
+                  obscureText: true,
+                  controller: ageController,
+                  style: TextStyle(
+                    color: Theme.of(context).accentColor,
+                  ),
+                  decoration: InputDecoration(
+                    labelText: 'Age',
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).primaryColor),
+                    prefixIcon: Icon(
+                      Icons.timeline,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                        width: 3,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).accentColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 30),
+              Container(
+                padding: EdgeInsets.only(
+                  left: 30,
+                ),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Description',
+                  style: TextStyle(
+                    fontFamily: 'Mogra',
+                    color: Theme.of(context).accentColor,
+                    fontSize: 18,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 3.0,
+                        color: Color.fromRGBO(255, 222, 49, 1),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 15,
+                  horizontal: 30,
+                ),
+                child: TextField(
+                  obscureText: true,
+                  controller: descriptionController,
+                  style: TextStyle(
+                    color: Theme.of(context).accentColor,
+                  ),
+                  decoration: InputDecoration(
+                    labelText: 'Describe yourself',
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).primaryColor),
+                    prefixIcon: Icon(
+                      Icons.text_fields,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                        width: 3,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).accentColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              
 
-                _authResult = await auth.createUserWithEmailAndPassword(
-                    email: emailController.text,
-                    password: passwordController.text);
-                var currentUUID = '';
+              SizedBox(height: 30),
+              Container(
+                padding: EdgeInsets.only(
+                  left: 30,
+                ),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Interest #1',
+                  style: TextStyle(
+                    fontFamily: 'Mogra',
+                    color: Theme.of(context).accentColor,
+                    fontSize: 18,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 3.0,
+                        color: Color.fromRGBO(255, 222, 49, 1),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 15,
+                  horizontal: 30,
+                ),
+                child: TextField(
+                  obscureText: true,
+                  controller: interest1Controller,
+                  style: TextStyle(
+                    color: Theme.of(context).accentColor,
+                  ),
+                  decoration: InputDecoration(
+                    labelText: 'e.g. Movies',
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).primaryColor),
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                        width: 3,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).accentColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
 
-                void getUUID() async {
-                  final FirebaseUser user = await auth.currentUser();
-                  currentUUID = user.uid;
+              SizedBox(height: 30),
+              Container(
+                padding: EdgeInsets.only(
+                  left: 30,
+                ),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Interest #2',
+                  style: TextStyle(
+                    fontFamily: 'Mogra',
+                    color: Theme.of(context).accentColor,
+                    fontSize: 18,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 3.0,
+                        color: Color.fromRGBO(255, 222, 49, 1),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 15,
+                  horizontal: 30,
+                ),
+                child: TextField(
+                  obscureText: true,
+                  controller: interest2Controller,
+                  style: TextStyle(
+                    color: Theme.of(context).accentColor,
+                  ),
+                  decoration: InputDecoration(
+                    labelText: 'e.g. Hiking',
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).primaryColor),
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                        width: 3,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).accentColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+
+              SizedBox(height: 30),
+              Container(
+                padding: EdgeInsets.only(
+                  left: 30,
+                ),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Interest #3',
+                  style: TextStyle(
+                    fontFamily: 'Mogra',
+                    color: Theme.of(context).accentColor,
+                    fontSize: 18,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 3.0,
+                        color: Color.fromRGBO(255, 222, 49, 1),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 15,
+                  horizontal: 30,
+                ),
+                child: TextField(
+                  obscureText: true,
+                  controller: interest3Controller,
+                  style: TextStyle(
+                    color: Theme.of(context).accentColor,
+                  ),
+                  decoration: InputDecoration(
+                    labelText: 'e.g. Art',
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).primaryColor),
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                        width: 3,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).accentColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+
+              ProfilePicker(_pickingImage),
+              RaisedButton(
+                color: Theme.of(context).accentColor,
+                child: Text(
+                  'Sign up',
+                  style: TextStyle(
+                    fontFamily: 'Mogra',
+                    color: Colors.white,
+                  ),
+                ),
+                onPressed: () async {
+                  FirebaseAuth auth = FirebaseAuth.instance;
+                  AuthResult _authResult;
+
+                  _authResult = await auth.createUserWithEmailAndPassword(
+                      email: emailController.text,
+                      password: passwordController.text);
+                  var currentUUID = '';
+
+                  void getUUID() async {
+                    final FirebaseUser user = await auth.currentUser();
+                    currentUUID = user.uid;
+                    print(currentUUID);
+                    print(currentUUID);
+                    final ref = FirebaseStorage.instance
+                        .ref()
+                        .child('pfp')
+                        .child(currentUUID + '.jpg');
+                    await ref.putFile(_userProfilePicture).onComplete;
+                    final url = await ref.getDownloadURL();
+                    Firestore.instance
+                        .document('profile/' + currentUUID)
+                        .setData({
+                      'uuid': currentUUID,
+                      'name': nameController.text,
+                      'description': descriptionController.text,
+                      'interest_1': interest1Controller.text,
+                      'interest_2': interest2Controller.text,
+                      'interest_3': interest3Controller.text,
+                      'age': ageController.text,
+                      'pfp': url,
+                      'other_img': null,
+                    });
+                  }
+
+                  getUUID();
                   print(currentUUID);
                   print(currentUUID);
-                  final ref = FirebaseStorage.instance
-                      .ref()
-                      .child('pfp')
-                      .child(currentUUID + '.jpg');
-                  await ref.putFile(_userProfilePicture).onComplete;
-                  final url = await ref.getDownloadURL();
-                  Firestore.instance.collection('profile').add({
-                    'uuid': currentUUID,
-                    'name': nameController.text,
-                    'interest_1': null,
-                    'interest_2': null,
-                    'interest_3': null,
-                    'age': null,
-                    'pfp': url,
-                    'other_img': null,
-                  });
-                }
+                  print('ready to do it');
 
-                getUUID();
-                Scaffold.of(context1).showSnackBar(SnackBar(
-                  content: Text(
-                    'Update your profile on the profile page',
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ),
-                  elevation: 5,
-                  backgroundColor: Color.fromRGBO(92, 83, 70, 1),
-                ));
-                print(currentUUID);
-
-                // Firestore.instance.collection('profile').add({
-                //   'uuid': currentUUID,
-                //   'first_name': null,
-                //   'last_name': null,
-                //   'interest_1': null,
-                //   'interest_2': null,
-                //   'interest_3': null,
-                //   'age': null,
-                //   'pfp': null,
-                // });
-                print(currentUUID);
-                print('ready to do it');
-
-                Navigator.of(context).pushNamed(
-                  Friends.routeName,
-                );
-              },
-            ),
-          ],
-        );
-      },
-    ));
+                  Navigator.of(context).pushNamed(
+                    Friends.routeName,
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
