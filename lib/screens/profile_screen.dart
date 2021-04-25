@@ -9,8 +9,22 @@ class ProfileScreen extends StatefulWidget {
   static const routeName = '/profile';
 
   final String name;
-  const ProfileScreen(this.name);
-
+  final String pfpUrl;
+  final String otherImageUrl;
+  final String description;
+  final String age;
+  final String interest_1;
+  final String interest_2;
+  final String interest_3;
+  const ProfileScreen(
+      {this.name,
+      this.pfpUrl,
+      this.otherImageUrl,
+      this.description,
+      this.age,
+      this.interest_1,
+      this.interest_2,
+      this.interest_3});
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -35,8 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     //     name = allData.data['name'];
     //     print(name);
     //   });
-      
-    
+
     // getUID();
     return Scaffold(
       drawer: DrawerSection(),
@@ -60,13 +73,85 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       ),
-      // body: Column(
-      //   children: [
-      //     Image.network('https://www.jennybeaumont.com/wp-content/uploads/2015/03/placeholder.gif'),
-      //     Container(child: Text(allData.data['description']),),
-      //     Row(children: [Column(children: [Text('Interest 1:'), Text(allData.data['interest_1'])],), Column(children: [Text('Interest 2:'), Text(allData.data['interest_2'])],), Column(children: [Text('Interest 3:'), Text(allData.data['interest_3'])],)],)
-      //   ],
-      // ),
+      body: Column(
+        children: [
+          SizedBox(height: 50),
+          Container(width: 300, height: 200, child: FittedBox(child: Image.network(widget.otherImageUrl))),
+          SizedBox(height: 30),
+          Container(
+            padding: EdgeInsets.all(10),
+            child: Text(
+              widget.description,
+              style: TextStyle(
+                  fontFamily: 'Mogra',
+                  fontSize: 18,
+                  color: Theme.of(context).accentColor),
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Column(
+                children: [
+                  Text(
+                    'Interest 1:',
+                    style: TextStyle(
+                        fontFamily: 'Mogra',
+                        fontSize: 18,
+                        color: Theme.of(context).primaryColor),
+                  ),
+                  Text(
+                    widget.interest_1,
+                    style: TextStyle(
+                        fontFamily: 'Mogra',
+                        fontSize: 18,
+                        color: Theme.of(context).primaryColor),
+                  )
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    'Interest 2:',
+                    style: TextStyle(
+                        fontFamily: 'Mogra',
+                        fontSize: 18,
+                        color: Theme.of(context).primaryColor),
+                  ),
+                  Text(
+                    widget.interest_2,
+                    style: TextStyle(
+                        fontFamily: 'Mogra',
+                        fontSize: 18,
+                        color: Theme.of(context).primaryColor),
+                  )
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    'Interest 3:',
+                    style: TextStyle(
+                        fontFamily: 'Mogra',
+                        fontSize: 18,
+                        color: Theme.of(context).primaryColor),
+                  ),
+                  Text(
+                    widget.interest_3,
+                    style: TextStyle(
+                        fontFamily: 'Mogra',
+                        fontSize: 18,
+                        color: Theme.of(context).primaryColor),
+                  )
+                ],
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }

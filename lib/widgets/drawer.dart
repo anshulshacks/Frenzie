@@ -74,7 +74,18 @@ class DrawerSection extends StatelessWidget {
               // );
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ProfileScreen(allData.data['name'])),
+                MaterialPageRoute(
+                  builder: (context) => ProfileScreen(
+                    name: allData.data['name'],
+                    pfpUrl: allData.data['pfp'],
+                    otherImageUrl: allData.data['other_img'],
+                    age: allData.data['age'],
+                    description: allData.data['description'],
+                    interest_1: allData.data['interest_1'],
+                    interest_2: allData.data['interest_2'],
+                    interest_3: allData.data['interest_3'],
+                  ),
+                ),
               );
             },
             child: ListTile(

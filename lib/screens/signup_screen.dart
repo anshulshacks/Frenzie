@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:frenzie/screens/friends_screen.dart';
 import 'package:frenzie/widgets/drawer.dart';
 import 'package:frenzie/widgets/profile_picker.dart';
+import 'package:frenzie/widgets/square_img_picker.dart';
 
 class SignupScreen extends StatefulWidget {
   static const routeName = '/signup-screen';
@@ -17,8 +18,13 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   File _userProfilePicture;
+  File _squareImgFile;
   void _pickingImage(File image) {
     _userProfilePicture = image;
+  }
+
+  void _pickingSquareImg(File squareImg) {
+    _squareImgFile = squareImg;
   }
 
   String interest_1 = 'Art';
@@ -271,7 +277,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   horizontal: 30,
                 ),
                 child: TextField(
-                  obscureText: true,
+                  obscureText: false,
                   controller: ageController,
                   style: TextStyle(
                     color: Theme.of(context).accentColor,
@@ -328,7 +334,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   horizontal: 30,
                 ),
                 child: TextField(
-                  obscureText: true,
+                  obscureText: false,
                   controller: descriptionController,
                   style: TextStyle(
                     color: Theme.of(context).accentColor,
@@ -387,7 +393,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   horizontal: 30,
                 ),
                 child: TextField(
-                  obscureText: true,
+                  obscureText: false,
                   controller: interest1Controller,
                   style: TextStyle(
                     color: Theme.of(context).accentColor,
@@ -445,7 +451,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   horizontal: 30,
                 ),
                 child: TextField(
-                  obscureText: true,
+                  obscureText: false,
                   controller: interest2Controller,
                   style: TextStyle(
                     color: Theme.of(context).accentColor,
@@ -504,7 +510,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   horizontal: 30,
                 ),
                 child: TextField(
-                  obscureText: true,
+                  obscureText: false,
                   controller: interest3Controller,
                   style: TextStyle(
                     color: Theme.of(context).accentColor,
@@ -536,6 +542,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
 
               ProfilePicker(_pickingImage),
+              SquareImgPicker(_pickingSquareImg),
               RaisedButton(
                 color: Theme.of(context).accentColor,
                 child: Text(
@@ -565,6 +572,11 @@ class _SignupScreenState extends State<SignupScreen> {
                         .child(currentUUID + '.jpg');
                     await ref.putFile(_userProfilePicture).onComplete;
                     final url = await ref.getDownloadURL();
+
+                    final squareRef = FirebaseStorage.instance.ref().child('other').child(currentUUID + '.jpg');
+                    await squareRef.putFile(_squareImgFile).onComplete;
+                    final squareUrl = await squareRef.getDownloadURL();
+
                     Firestore.instance
                         .document('profile/' + currentUUID)
                         .setData({
@@ -576,7 +588,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       'interest_3': interest3Controller.text,
                       'age': ageController.text,
                       'pfp': url,
-                      'other_img': null,
+                      'other_img': squareUrl,
                     });
                   }
 
