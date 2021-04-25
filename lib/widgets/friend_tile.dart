@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 class FriendTile extends StatelessWidget {
   final String name;
+  final String url;
 
-  FriendTile(this.name);
+  FriendTile(this.name, this.url);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: CircleAvatar(backgroundColor: Colors.purple),
+      leading: CircleAvatar(
+          backgroundColor: Colors.purple, backgroundImage: NetworkImage(url)),
       title: Text(
-        'isabella',
+        name,
         style: TextStyle(
           fontSize: 20,
           fontFamily: 'Mogra',
@@ -25,6 +27,13 @@ class FriendTile extends StatelessWidget {
         ),
       ),
       subtitle: Text('age'),
+      trailing: Wrap(
+        spacing: 12,
+        children: <Widget>[
+          Icon(Icons.sms),
+          Icon(Icons.remove_red_eye),
+        ],
+      ),
     );
   }
 }

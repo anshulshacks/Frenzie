@@ -9,11 +9,13 @@ import 'package:frenzie/screens/friends_screen.dart';
 import 'package:frenzie/widgets/profile_picker.dart';
 
 class SignupScreen extends StatefulWidget {
+  static const routeName = '/signup-screen';
   @override
   _SignupScreenState createState() => _SignupScreenState();
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  
   File _userProfilePicture;
   void _pickingImage(File image) {
     _userProfilePicture = image;
@@ -32,6 +34,8 @@ class _SignupScreenState extends State<SignupScreen> {
     'Music',
     'Cooking'
   ];
+
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
@@ -43,7 +47,7 @@ class _SignupScreenState extends State<SignupScreen> {
         return Column(
           children: [
             SizedBox(
-              height: 100,
+              height: 50,
             ),
             Container(
               alignment: Alignment.center,
@@ -91,7 +95,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 horizontal: 30,
               ),
               child: TextField(
-                controller: emailController,
+                controller: nameController,
                 style: TextStyle(
                   color: Theme.of(context).accentColor,
                 ),
@@ -99,7 +103,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   labelText: 'Full Name',
                   labelStyle: TextStyle(color: Theme.of(context).primaryColor),
                   prefixIcon: Icon(
-                    Icons.mail,
+                    Icons.text_fields,
                     color: Theme.of(context).primaryColor,
                   ),
                   enabledBorder: OutlineInputBorder(
@@ -259,15 +263,16 @@ class _SignupScreenState extends State<SignupScreen> {
                       .child('pfp')
                       .child(currentUUID + '.jpg');
                   await ref.putFile(_userProfilePicture).onComplete;
+                  final url = await ref.getDownloadURL();
                   Firestore.instance.collection('profile').add({
                     'uuid': currentUUID,
-                    'first_name': null,
-                    'last_name': null,
+                    'name': nameController.text,
                     'interest_1': null,
                     'interest_2': null,
                     'interest_3': null,
                     'age': null,
-                    'pfp': null,
+                    'pfp': url,
+                    'other_img': null,
                   });
                 }
 

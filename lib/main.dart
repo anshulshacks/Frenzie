@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       home: SignupScreen(),
       routes: {
         Friends.routeName: (ctx) => Friends(),
+        SignupScreen.routeName: (ctx) => SignupScreen(),
       },
     );
   }

@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:frenzie/screens/signup_screen.dart';
 import 'package:frenzie/widgets/friend_tile.dart';
 
 class Friends extends StatelessWidget {
@@ -13,7 +15,7 @@ class Friends extends StatelessWidget {
         elevation: 0,
         backgroundColor: Color.fromRGBO(137, 212, 255, 1),
         title: Text(
-          'friends',
+          'find friends',
           style: TextStyle(
             fontSize: 30,
             fontFamily: 'Mogra',
@@ -57,22 +59,20 @@ class Friends extends StatelessWidget {
                   }
                   final documents = streamSnapshot.data.documents;
                   return ListView.builder(
-                    itemCount: documents.length,
-                    itemBuilder: (ctx, index) => FriendTile(documents[index]['uuid'])
-                  );
+                      itemCount: documents.length,
+                      itemBuilder: (ctx, index) => FriendTile(
+                          documents[index]['name'], documents[index]['pfp']));
                 }),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {
-          print('hi');
-          Firestore.instance.collection('profile').snapshots().listen((data) {
-            data.documents.forEach((document) {
-              print(document['text']);
-            });
-          });
+        onPressed: () async {
+          await FirebaseAuth.instance.signOut();
+          Navigator.of(context).pushNamed(
+            SignupScreen.routeName,
+          );
         },
       ),
     );
